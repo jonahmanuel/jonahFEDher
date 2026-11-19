@@ -1,0 +1,607 @@
+/************************/
+/* SECTION basis */
+/************************/
+
+body {
+    background-color: var(--background-light);
+    color: var(--text-black);
+    font-size: 1em;
+}
+
+
+/************************/
+/* SECTION header */
+/************************/
+
+body > header {
+    background-color: var(--background-light);
+}
+
+/* iconen in header zwart */
+body > header nav svg path {
+    stroke: var(--text-black);
+    fill: none;
+}
+
+/* logo zwart en gevuld */
+body > header nav ul:first-of-type li:nth-of-type(3) svg path {
+    fill: var(--text-black);
+    stroke: var(--text-black);
+}
+
+/* hamburger icoon normaal houden */
+body > header button img {
+    filter: none;
+}
+
+/* Bron: ChatGPT (AI), hulp bij het contrast van het hamburgericoon in dark mode */
+@media (prefers-color-scheme: dark) {
+    body > header button img {
+        filter: invert(1);
+    }
+}
+
+/* menu kleuren */
+body > header nav ul:nth-of-type(2) {
+    background-color: var(--background-light);
+    color: var(--text-black);
+}
+
+/* links in menu zwart */
+body > header nav ul:nth-of-type(2) a {
+    color: var(--text-black);
+}
+
+/* sluit knop zwart */
+body > header nav ul:nth-of-type(2) > li:first-of-type button {
+    color: var(--text-black);
+    border-color: var(--text-black);
+}
+
+
+/************************/
+/* SECTION 1 carousel foto's */
+/************************/
+
+/* ruimte maken voor vaste header */
+body > main {
+    margin-top: 4em;
+}
+
+/* Bron: shooft (CodePen), inspiratie voor de mobiele fotocarrousel: https://codepen.io/shooft/pen/QwjQGZe */
+main > section:first-of-type ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: nowrap;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+/* Bron: ChatGPT (AI), uitleg over scroll-snap en het uitlijnen van de productfoto’s */
+/* elke slide hele breedte */
+main > section:first-of-type li {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+}
+
+/* figuur als container */
+main > section:first-of-type figure {
+    margin: 0;
+    position: relative;
+}
+
+/* afbeelding schaalt mee */
+main > section:first-of-type img {
+    display: block;
+    width: 100%;
+}
+
+/* Bron: ChatGPT (AI), uitleg over relative en absolute positionering van de foto-onderschriften */
+/* caption onderin op foto */
+main > section:first-of-type figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin: 0;
+    padding: .5em 1em;
+
+    font-size: 1em;
+
+    background-color: var(--background-light);
+    opacity: .8;
+
+    color: var(--text-black);
+    text-align: center;
+}
+
+
+/************************/
+/* SECTION 2 product info */
+/************************/
+
+main > section:nth-of-type(2) {
+    display: block;
+}
+
+/* titel en prijs op een rij */
+main > section:nth-of-type(2) > section:first-of-type {
+    color: var(--text-black);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: .5em;
+    padding: .5em;
+}
+
+/* titel styling */
+main > section:nth-of-type(2) > section:first-of-type h2 {
+    font-size: 1.2em;
+}
+
+/* prijs rechts uitlijnen */
+main > section:nth-of-type(2) > section:first-of-type p {
+    margin: 0;
+    padding: .5em 0;
+
+    font-size: 1em;
+    text-align: right;
+    line-height: 1.3;
+}
+
+
+/************************/
+/* SECTION kleur kiezen */
+/************************/
+
+main > section:nth-of-type(2) > section:nth-of-type(2) {
+    padding: 1em;
+    font-size: 1em;
+}
+
+/* kleur label hoofdletters */
+main > section:nth-of-type(2) > section:nth-of-type(2) p {
+    text-transform: uppercase;
+}
+
+/* kleur opties naast elkaar */
+main > section:nth-of-type(2) > section:nth-of-type(2) ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    gap: .5em;
+}
+
+/* kleur knop rand */
+main > section:nth-of-type(2) > section:nth-of-type(2) button {
+    border: 1px solid var(--text-black);
+    padding: .15em;
+    cursor: pointer;
+}
+
+/* kleur thumbnail */
+main > section:nth-of-type(2) > section:nth-of-type(2) img {
+    display: block;
+
+    width: auto;
+    height: 6em;
+
+    object-fit: cover;
+}
+
+
+/************************/
+/* SECTION maten */
+/************************/
+
+main > section:nth-of-type(2) > section:nth-of-type(3) {
+    padding: 0 1em .5em .5em;
+}
+
+/* rand fieldset weghalen */
+main > section:nth-of-type(2) > section:nth-of-type(3) fieldset {
+    border: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3em;
+}
+
+/* titel boven de maten */
+main > section:nth-of-type(2) > section:nth-of-type(3) legend {
+    width: 100%;
+    margin-bottom: .5em;
+
+    font-size: 1em;
+    font-weight: 500;
+}
+
+/* radio knop onzichtbaar maken */
+main > section:nth-of-type(2) > section:nth-of-type(3) input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* label ziet eruit als maatknop */
+main > section:nth-of-type(2) > section:nth-of-type(3) label {
+    min-width: 4.3em;
+    min-height: 2.5em;
+
+    padding: .5em;
+
+    border: 1px solid #666;
+
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Bron: ChatGPT (AI), uitleg over input:checked + label voor de geselecteerde maat */
+/* geselecteerde maat */
+main > section:nth-of-type(2) > section:nth-of-type(3) input:checked + label {
+    background-color: var(--background-dark);
+    color: var(--text-white);
+}
+
+/* Bron: ChatGPT (AI), uitleg over toetsenbordfocus en navigeren met pijltjestoetsen binnen de maatgroep */
+/* focus met toetsenbord */
+main > section:nth-of-type(2) > section:nth-of-type(3) input:focus-visible + label {
+    outline: .15em solid var(--text-black);
+    outline-offset: .15em;
+}
+
+
+/************************/
+/* SECTION acties */
+/************************/
+
+main > section:nth-of-type(2) > section:nth-of-type(4) {
+    padding: 0 1.3em 1em .5em;
+
+    display: flex;
+    gap: .2em;
+    align-items: stretch;
+}
+
+/* waarschuw knop breed */
+main > section:nth-of-type(2) > section:nth-of-type(4) button:first-of-type {
+    flex: 1;
+
+    padding: .5em 0;
+
+    background: var(--background-dark);
+    color: var(--text-white);
+
+    border: none;
+    font-size: 1em;
+}
+
+/* opslaan knop smal */
+main > section:nth-of-type(2) > section:nth-of-type(4) button:last-of-type {
+    padding: 0 1em;
+
+    background: none;
+
+    border: 1px solid var(--text-black);
+
+    min-width: 4em;
+    font-size: 1em;
+}
+
+/* bookmark icoon zwart */
+main > section:nth-of-type(2) > section:nth-of-type(4) svg path {
+    stroke: var(--text-black);
+    fill: var(--text-black);
+}
+
+
+/************************/
+/* SECTION beschrijving */
+/************************/
+
+main > section:nth-of-type(2) > section:nth-of-type(5) {
+    padding: .75em 1em;
+    font-size: 1em;
+}
+
+/* beschrijving titel */
+main > section:nth-of-type(2) > section:nth-of-type(5) h2 {
+    font-size: 1.1em;
+    margin: 0 0 .4em;
+}
+
+/* bullets */
+main > section:nth-of-type(2) > section:nth-of-type(5) ul {
+    margin: 0;
+    padding-left: 1em;
+    list-style: disc;
+}
+
+
+/************************/
+/* SECTION wasvoorschriften */
+/************************/
+
+main > section:nth-of-type(2) > section:nth-of-type(6) {
+    padding: .75em 1em;
+    font-size: 1em;
+}
+
+/* titel */
+main > section:nth-of-type(2) > section:nth-of-type(6) h2 {
+    font-size: 1.1em;
+    margin: 0 0 .4em;
+}
+
+/* bullets */
+main > section:nth-of-type(2) > section:nth-of-type(6) ul {
+    margin: 0;
+    padding-left: 1em;
+    list-style: disc;
+}
+
+
+/************************/
+/* SECTION extra info */
+/************************/
+
+main > section:nth-of-type(2) > section:nth-of-type(7) {
+    padding: .5em 0;
+
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+/* elke dropdown */
+main > section:nth-of-type(2) > section:nth-of-type(7) details {
+    border-top: 1px solid #333;
+}
+
+/* eerste dropdown geen extra lijn */
+main > section:nth-of-type(2) > section:nth-of-type(7) details:first-of-type {
+    border-top: none;
+}
+
+/* Bron: ChatGPT (AI), advies over het lettergewicht van de titels van de uitklappers */
+/* titel van dropdown */
+main > section:nth-of-type(2) > section:nth-of-type(7) summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+
+    padding: .7em 1em;
+
+    cursor: pointer;
+    list-style: none;
+}
+
+/* Bron: ChatGPT (AI), uitleg over het standaardpijltje en de plus/min met ::after en details[open] */
+main > section:nth-of-type(2) > section:nth-of-type(7) summary::-webkit-details-marker {
+    display: none;
+}
+
+/* plus rechts */
+main > section:nth-of-type(2) > section:nth-of-type(7) summary::after {
+    content: "+";
+}
+
+/* min als open */
+main > section:nth-of-type(2) > section:nth-of-type(7) details[open] summary::after {
+    content: "−";
+}
+
+/* inhoud van dropdown */
+main > section:nth-of-type(2) > section:nth-of-type(7) details p {
+    padding: 0 1em .7em;
+}
+
+/* focus met toetsenbord */
+main > section:nth-of-type(2) > section:nth-of-type(7) summary:focus-visible {
+    outline-color: var(--text-black);
+}
+
+
+/************************/
+/* SECTION 3 en 4 product cards */
+/************************/
+
+/* titels */
+main > section:nth-of-type(3) h2,
+main > section:nth-of-type(4) h2 {
+    font-size: 1.1em;
+    margin: 2em 1em .5em;
+
+    color: var(--text-black);
+}
+
+/* Bron: ChatGPT (AI), uitleg over Flexbox en horizontaal scrollen bij de productkaarten */
+/* horizontale cards */
+main > section:nth-of-type(3) ul,
+main > section:nth-of-type(4) ul {
+    display: flex;
+    gap: .3em;
+
+    overflow-x: auto;
+
+    padding: 0 .4em;
+    margin: 0;
+
+    list-style: none;
+}
+
+/* links zwart */
+main > section:nth-of-type(3) a,
+main > section:nth-of-type(4) a {
+    color: var(--text-black);
+}
+
+/* card breedte */
+main > section:nth-of-type(3) li,
+main > section:nth-of-type(4) li {
+    flex: 0 0 40%;
+}
+
+/* afbeeldingen */
+main > section:nth-of-type(3) img,
+main > section:nth-of-type(4) img {
+    display: block;
+    width: 100%;
+}
+
+/* tekst onder kaart */
+main > section:nth-of-type(3) p,
+main > section:nth-of-type(4) p {
+    margin: .4em 0 0;
+
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 1.4em;
+}
+
+
+/************************/
+/* SECTION categorieën */
+/************************/
+
+main > section:last-of-type {
+    background-color: var(--background-light);
+    color: var(--text-black);
+
+    padding: 1em;
+}
+
+/* categorie layout */
+main > section:last-of-type nav > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+/* twee kolommen op klein scherm */
+main > section:last-of-type nav > ul > li {
+    flex: 1 1 45%;
+}
+
+/* categorie titels */
+main > section:last-of-type h3 {
+    font-size: 1em;
+    margin: 0 0 .15em;
+
+    font-weight: 600;
+}
+
+/* links zwart */
+main > section:last-of-type a {
+    color: var(--text-black);
+
+    text-decoration: none;
+    font-size: 1em;
+}
+
+/* ruimte tussen links */
+main > section:last-of-type ul ul li {
+    margin-bottom: .1em;
+}
+
+
+/********************************/
+/* SECTION tablet en desktop */
+/********************************/
+
+@media (min-width: 768px) {
+
+    /* Bron: ChatGPT (AI), uitleg over de kolombreedtes van het desktopgrid */
+    /* main in twee kolommen */
+    main {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+
+        gap: 2em;
+
+        margin-top: 6em;
+        padding: 0 2em;
+    }
+
+
+    /* foto's linkerkolom */
+    main > section:first-of-type {
+        grid-column: 1;
+    }
+
+
+    /* Vanaf 768 px verandert de fotocarrousel in een raster van twee kolommen. */
+    main > section:first-of-type ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: .5em;
+
+        overflow-x: visible;
+        scroll-snap-type: none;
+    }
+
+
+    /* grid items normaal */
+    main > section:first-of-type li {
+        flex: none;
+        scroll-snap-align: none;
+    }
+
+
+    /* captions niet nodig op desktop */
+    main > section:first-of-type figcaption {
+        display: none;
+    }
+
+
+    /* product info rechterkolom */
+    main > section:nth-of-type(2) {
+        grid-column: 2;
+    }
+
+
+    /* Bron: ChatGPT (AI), uitleg over grid-column: 1 / -1 voor secties over de volle breedte */
+    /* onderste secties over volle breedte */
+    main > section:nth-of-type(3),
+    main > section:nth-of-type(4),
+    main > section:last-of-type {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/************************/
+/* SECTION grote desktop */
+/************************/
+
+@media (min-width: 1200px) {
+
+    /* categorieën in vier kolommen */
+    main > section:last-of-type nav > ul > li {
+        flex: 1 1 22%;
+    }
+}
+
+/* Zwarte focusrand op de lichte productheader */
+/* Bron: ChatGPT (AI), uitleg en hulp bij de focuskleur en inline-flex rond headericonen */
+header a:focus-visible,
+header button:focus-visible {
+    outline-color: var(--text-black);
+}
+
+header > nav > ul:first-of-type a {
+    display: inline-flex;
+}                   

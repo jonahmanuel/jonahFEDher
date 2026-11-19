@@ -1,0 +1,556 @@
+/************************/
+/* SECTION reset */
+/************************/
+
+/* alles op nul zetten */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/************************/
+/* SECTION font face */
+/************************/
+
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-4/web/Inter-Regular.woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-4/web/Inter-Medium.woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-4/web/Inter-SemiBold.woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* tekst verbergen maar wel leesbaar voor screenreader */
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+
+/************************/
+/* SECTION kleuren */
+/************************/
+
+:root {
+    --background-dark: black;
+    --background-light: white;
+
+    --text-white: white;
+    --text-black: black;
+
+    --header-items: var(--text-white);
+    --header-background: var(--background-dark);
+}
+
+
+/* Bron: ChatGPT (AI), uitleg over kleurvariabelen en advies over contrast in dark mode */
+@media (prefers-color-scheme: dark) {
+
+    :root {
+        --background-dark: #000;
+        --background-light: #111;
+
+        --text-white: #fff;
+        --text-black: #eee;
+
+        --header-background: var(--background-dark);
+        --header-items: var(--text-white);
+    }
+}
+
+
+/************************/
+/* SECTION basis */
+/************************/
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-white);
+    line-height: 1.5em;
+    font-size: 1em;
+}
+
+
+/* ul zonder bolletjes */
+ul {
+    list-style: none;
+}
+
+
+/* links standaard wit en zonder underline */
+a {
+    color: var(--text-white);
+    text-decoration: none;
+}
+
+
+/* svg basis grootte */
+svg {
+    width: 1em;
+    height: 1em;
+}
+
+
+/************************/
+/* SECTION header basis */
+/************************/
+
+/* header transparant en vast bovenaan */
+header {
+    background-color: transparent;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 20;
+}
+
+
+/* hamburger icoon grootte en wit maken */
+header button img {
+    width: 1.5em;
+    height: 1.5em;
+    filter: invert(1);
+}
+
+
+/* nav volle breedte */
+header>nav {
+    width: 100%;
+}
+
+
+/************************/
+/* SECTION header eerste ul */
+/************************/
+
+/* iconen rij */
+header>nav>ul:first-of-type {
+    display: flex;
+    align-items: center;
+
+    padding: .75em 1em;
+    gap: 1.5em;
+
+    font-size: 1em;
+}
+
+
+/* hamburger knop zonder standaard styling */
+header>nav>ul:first-of-type>li:first-of-type button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+
+/* volgorde items in header */
+header nav ul:first-of-type li:nth-of-type(1) {
+    order: 1;
+}
+
+header nav ul:first-of-type li:nth-of-type(2) {
+    order: 2;
+}
+
+header nav ul:first-of-type li:nth-of-type(3) {
+    order: 3;
+    margin: 0 auto;
+}
+
+header nav ul:first-of-type li:nth-of-type(4) {
+    order: 4;
+}
+
+header nav ul:first-of-type li:nth-of-type(5) {
+    order: 5;
+}
+
+
+/* logo groter */
+header nav ul:first-of-type li:nth-of-type(3) svg {
+    width: 5em;
+    height: auto;
+}
+
+
+/* svg lijnen wit */
+header nav svg path {
+    stroke: var(--text-white);
+    fill: none;
+}
+
+
+/* specifieke svg vullen wit */
+header nav ul:first-of-type>li:first-of-type svg path,
+header nav ul:first-of-type>li:nth-of-type(3) svg path {
+    fill: var(--text-white);
+}
+
+
+/************************/
+/* SECTION menu tweede ul */
+/************************/
+
+/* Bron: shooft (CodePen), basis voor het hamburgermenu: https://codepen.io/shooft/pen/myepoJo */
+/* Bron: ChatGPT (AI), uitleg over inset, translate en de schuifanimatie */
+/* menu scherm full screen en uit beeld */
+header>nav>ul:nth-of-type(2) {
+    position: fixed;
+    inset: 0;
+
+    background: var(--background-dark);
+    color: var(--text-white);
+
+    /* menu mag niet doorscrollen */
+    overflow: hidden;
+
+    /* ruimte boven voor header */
+    padding: 5em 2em 2em;
+
+    /* items onder elkaar */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+
+    font-size: 1.2em;
+
+    /* ChatGPT hielp met visibility in de drie menustanden voor toetsenbordgebruik. */
+    /* standaard dicht */
+    visibility: hidden;
+    translate: -100% 0;
+    transition: translate .3s ease;
+}
+
+
+/* menu open class */
+header>nav>ul:nth-of-type(2).toonMenu {
+    visibility: visible;
+    translate: 0 0;
+}
+
+
+/* alleen als menu open is lijnen en pijltje */
+header>nav>ul:nth-of-type(2).toonMenu>li:not(:first-of-type) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: .1em 0;
+
+    border-bottom: .006em solid currentColor;
+}
+
+
+/* pijltje rechts alleen als menu open is */
+header>nav>ul:nth-of-type(2).toonMenu>li:not(:first-of-type)::after {
+    content: "›";
+    font-size: 1em;
+}
+
+
+/* sluit knop rechtsboven */
+header>nav>ul:nth-of-type(2)>li:first-of-type {
+    align-self: flex-end;
+}
+
+
+/* sluit knop styling */
+header>nav>ul:nth-of-type(2)>li:first-of-type button {
+    background: none;
+
+    border: 1px solid var(--text-white);
+    color: var(--text-white);
+
+    padding: .3em .7em;
+
+    cursor: pointer;
+    font-size: 1em;
+}
+
+
+/* Bron: ChatGPT (AI), feedback over scrollen met een geopend menu op een laag scherm */
+/* pagina niet scrollen als menu open is */
+body.menu-open {
+    overflow: hidden;
+}
+
+
+/************************/
+/* SECTION footer basis */
+/************************/
+
+footer {
+    background: var(--background-light);
+    color: var(--text-black);
+    border-top: 1px solid var(--text-black);
+}
+
+
+/* padding footer */
+footer section {
+    padding: 0 1em;
+}
+
+
+/* rijen met lijn onder */
+footer section>ul>li {
+    border-bottom: 1px solid var(--text-black);
+    padding: .8em 0;
+}
+
+
+/* titel van dropdown */
+footer summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 1em;
+    font-weight: 500;
+
+    cursor: pointer;
+    list-style: none;
+}
+
+
+/* Bron: ChatGPT (AI), uitleg over het standaardpijltje en de plus en min bij uitklappers */
+/* standaard details pijltje verbergen */
+footer summary::-webkit-details-marker {
+    display: none;
+}
+
+
+/* plus teken */
+footer summary::after {
+    content: "+";
+}
+
+
+/* min teken als details open staat */
+footer details[open] summary::after {
+    content: "−";
+}
+
+
+/* ruimte boven submenu */
+footer details ul {
+    margin-top: .4em;
+}
+
+
+/* submenu linkjes */
+footer details ul li {
+    padding: .3em 0;
+    font-size: 1em;
+}
+
+
+/* links in footer */
+footer details ul a {
+    color: var(--text-black);
+}
+
+
+/************************/
+/* SECTION copyright */
+/************************/
+
+footer p {
+    font-size: 1em;
+    padding: 1.5em 0;
+
+    text-transform: uppercase;
+    color: #555;
+}
+
+
+/********************************/
+/* SECTION tablet en desktop */
+/********************************/
+
+@media (min-width: 768px) {
+
+
+    /************/
+    /* HEADER */
+    /************/
+
+    /* header layout naast elkaar */
+    header>nav {
+        display: flex;
+        align-items: center;
+    }
+
+
+    /* iconen rechts zetten */
+    header>nav>ul:first-of-type {
+        order: 2;
+
+        padding: 1em 2em;
+        gap: 2em;
+
+        margin-left: auto;
+
+        font-size: 1em;
+    }
+
+
+    /* hamburger verbergen op desktop */
+    header nav ul:first-of-type li:first-of-type {
+        display: none;
+    }
+
+
+    /* zoek icoon reset margin */
+    header nav ul:first-of-type li:nth-of-type(2) {
+        margin-left: 0;
+    }
+
+
+    /* Bron: ChatGPT (AI), hulp om de desktopnavigatie vanaf 768 px zichtbaar te houden */
+    /* menu wordt normale nav balk */
+    header>nav>ul:nth-of-type(2) {
+        order: 1;
+
+        position: static;
+        inset: auto;
+
+        visibility: visible;
+        translate: 0 0;
+
+        padding: 0;
+        margin: 1em;
+
+        background: none;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+
+        font-size: 1em;
+    }
+
+
+    /* sluit knop verbergen op desktop */
+    header>nav>ul:nth-of-type(2)>li:first-of-type {
+        display: none;
+    }
+
+
+    /************/
+    /* FOOTER */
+    /************/
+
+    /* footer in vier kolommen */
+    footer section>ul {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 2em;
+        padding: 2em 0;
+    }
+
+
+    /* geen lijnen meer op desktop */
+    footer section>ul>li {
+        border: none;
+        padding: 0;
+    }
+
+
+    /* titel iets dikker */
+    footer summary {
+        font-size: 1em;
+        font-weight: 600;
+    }
+}
+
+
+/************************/
+/* SECTION grote desktop */
+/************************/
+
+@media (min-width: 1200px) {
+
+    /* Bron: ChatGPT (AI), review van de logopositie bij de overgang naar brede schermen */
+    /* logo in midden */
+    header>nav {
+        position: relative;
+    }
+
+
+    header nav ul:first-of-type li:nth-of-type(3) {
+        position: absolute;
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
+}
+
+
+/************************/
+/* SECTION focus states */
+/************************/
+
+/* Bron: ChatGPT (AI), uitleg over de standaardfocusrand en :focus-visible */
+/* focus outline weghalen */
+:focus {
+    outline: none;
+}
+
+
+/* focus ring voor toetsenbord gebruikers */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+    outline: .15em solid var(--text-white);
+    outline-offset: .15em;
+}
+
+
+/* focus ring zwart op lichte blokken */
+footer a:focus-visible,
+footer summary:focus-visible,
+main>section:nth-of-type(5) a:focus-visible,
+main>section:last-of-type a:focus-visible,
+main>section:nth-of-type(2) button:focus-visible,
+main>section:nth-of-type(4) button:focus-visible {
+    outline-color: var(--text-black);
+}
+
+/* ChatGPT hielp om de toetsenbordfocus binnen de klikbare foto zichtbaar te maken. */
+main a:focus-visible img {
+    outline: 3px solid white;
+    outline-offset: -5px;
+}

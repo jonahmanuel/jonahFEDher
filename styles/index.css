@@ -1,0 +1,403 @@
+/************************/
+/* SECTION 1 hero */
+/************************/
+
+main > section:first-of-type ul {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-auto-rows: minmax(16em, 70vh);
+
+    width: 100%;
+}
+
+/* afbeelding over hele breedte */
+main > section:first-of-type li:nth-of-type(2) {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+}
+
+/* afbeelding schalen */
+main > section:first-of-type img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/* titel linksonder */
+main > section:first-of-type li:nth-of-type(1) {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
+    align-self: end;
+    justify-self: start;
+
+    margin: 0 0 1em 1em;
+
+    z-index: 1;
+}
+
+/* titel styling */
+main > section:first-of-type h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+/* pijltje rechtsonder */
+main > section:first-of-type li:nth-of-type(3) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+
+    align-self: end;
+    justify-self: end;
+
+    margin: 0 .7em .7em 0;
+}
+
+/* pijltje grootte */
+main > section:first-of-type svg {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+/* pijltje wit */
+main > section:first-of-type svg path {
+    stroke: var(--text-white);
+}
+
+
+/************************/
+/* SECTION 2 winkels */
+/************************/
+
+main > section:nth-of-type(2) ul {
+    display: flex;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+    gap: .1em;
+}
+
+/* kaart breedte */
+main > section:nth-of-type(2) li {
+    flex: 0 0 30%;
+    scroll-snap-align: start;
+}
+
+/* afbeelding schalen */
+main > section:nth-of-type(2) img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+/* link als basis voor tekst over afbeelding */
+main > section:nth-of-type(2) li a {
+    position: relative;
+}
+
+/* titel onderin afbeelding */
+main > section:nth-of-type(2) h3 {
+    position: absolute;
+    left: .5em;
+    bottom: .5em;
+
+    margin: 0;
+
+    font-size: .7em;
+    font-weight: 400;
+
+    color: var(--text-white);
+    text-decoration: underline;
+}
+
+
+/************************/
+/* SECTION 3 drops */
+/************************/
+
+main > section:nth-of-type(3) > article a {
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+}
+
+/* afbeelding als achtergrond */
+main > section:nth-of-type(3) > article img {
+    grid-row: 1 / 4;
+    grid-column: 1 / -1;
+
+    display: block;
+    width: 100%;
+
+    opacity: .8;
+}
+
+/* titel over afbeelding */
+main > section:nth-of-type(3) > article h2 {
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+
+    align-self: end;
+
+    margin: 0 .8em .3em;
+
+    z-index: 1;
+}
+
+/* tekst onder titel */
+main > section:nth-of-type(3) > article p {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+
+    margin: 0 .8em 1em;
+
+    z-index: 1;
+}
+
+/* pijltje */
+main > section:nth-of-type(3) > article svg {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+
+    justify-self: end;
+
+    margin: 0 .8em .8em 0;
+
+    width: 1.5em;
+    height: 1.5em;
+}
+
+
+/************************/
+/* SECTION 4 newsletter */
+/************************/
+
+main > section:nth-of-type(4) figure {
+    display: grid;
+    grid-template-rows: 1fr auto auto auto;
+
+    max-height: 90vh;
+
+    overflow: hidden;
+}
+
+/* afbeelding */
+main > section:nth-of-type(4) figure img {
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/* tekst over afbeelding */
+main > section:nth-of-type(4) figure figcaption {
+    grid-row: 2 / -1;
+    grid-column: 1 / -1;
+
+    padding: 0 1em 1.5em;
+
+    display: grid;
+    gap: .5em;
+}
+
+/* formulier */
+main > section:nth-of-type(4) figure input {
+    width: 100%;
+
+    border: none;
+    border-bottom: 1px solid var(--text-white);
+
+    background: transparent;
+}
+
+
+/************************/
+/* SECTION 5 categorieën */
+/************************/
+
+main > section:nth-of-type(5) {
+    background-color: var(--background-light);
+    color: var(--text-black);
+
+    padding: 1em;
+}
+
+/* categorie layout */
+main > section:nth-of-type(5) > nav > ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 1em;
+}
+
+/* twee categorieën per rij */
+main > section:nth-of-type(5) > nav > ul > li {
+    flex: 1 1 45%;
+}
+
+/* titels */
+main > section:nth-of-type(5) h3 {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+/* links zwart */
+main > section:nth-of-type(5) a {
+    color: var(--text-black);
+}
+
+
+/********************************/
+/* SECTION tablet en desktop */
+/********************************/
+
+@media (min-width: 768px) {
+
+    /********/
+    /* HERO */
+    /********/
+
+    main > section:first-of-type ul {
+        grid-auto-rows: minmax(24em, 90vh);
+    }
+
+    main > section:first-of-type h2 {
+        font-size: 2.5em;
+    }
+
+
+    /***********/
+    /* WINKELS */
+    /***********/
+
+    main > section:nth-of-type(2) li {
+        flex: 0 0 22%;
+    }
+
+    main > section:nth-of-type(2) ul {
+        gap: .2em;
+    }
+
+    main > section:nth-of-type(2) h3 {
+        font-size: .9em;
+
+        left: 1em;
+        bottom: 1em;
+    }
+
+
+    /*********/
+    /* DROPS */
+    /*********/
+
+    main > section:nth-of-type(3) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    main > section:nth-of-type(3) article {
+        flex: 1 1 45%;
+    }
+
+
+    /**************/
+    /* CATEGORIEËN */
+    /**************/
+
+    main > section:nth-of-type(5) {
+        padding: 2em 3em;
+    }
+}
+
+
+/************************/
+/* SECTION newsletter desktop */
+/************************/
+
+@media (min-width: 1024px) {
+
+    main > section:nth-of-type(4) {
+        background: var(--background-light);
+    }
+
+    /* twee gelijke kolommen */
+    main > section:nth-of-type(4) figure {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 40em;
+
+        max-height: none;
+    }
+
+    /* foto rechts */
+    main > section:nth-of-type(4) figure img {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    /* nieuwsbrief links */
+    main > section:nth-of-type(4) figure figcaption {
+        grid-column: 1;
+        grid-row: 1;
+
+        align-content: center;
+
+        color: var(--text-black);
+
+        padding: 4em;
+    }
+
+    /* donkere lijn op witte achtergrond */
+    main > section:nth-of-type(4) figure input {
+        border-bottom-color: var(--text-black);
+    }
+}
+
+
+/************************/
+/* SECTION grote desktop */
+/************************/
+
+@media (min-width: 1200px) {
+
+    /***********/
+    /* WINKELS */
+    /***********/
+
+    main > section:nth-of-type(2) li {
+        flex: 0 0 16.5%;
+    }
+
+    main > section:nth-of-type(2) h3 {
+        font-size: 1em;
+
+        left: 1.2em;
+        bottom: 1.2em;
+    }
+
+
+    /*********/
+    /* DROPS */
+    /*********/
+
+    main > section:nth-of-type(3) article {
+        flex: 1 1 30%;
+    }
+
+
+    /**************/
+    /* CATEGORIEËN */
+    /**************/
+
+    main > section:nth-of-type(5) > nav > ul > li {
+        flex: 1 1 22%;
+    }
+}
